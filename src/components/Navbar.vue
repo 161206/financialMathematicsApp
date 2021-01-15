@@ -82,6 +82,14 @@ export default {
               {
                 icon: 'folder',
                 links: [
+                    { icon: 'dashboard', text: 'Installment Calculator', route: '/Installment' },/*
+                    { icon: 'dashboard', text: 'Compound Interest Calculator', route: '/CompoundInterest' },*/
+                    ],
+                text: 'Installment',
+              },
+              {
+                icon: 'folder',
+                links: [
                     { icon: 'dashboard', text: 'Mortgage Calculator', route: '/Mortgage' },/*
                     { icon: 'dashboard', text: 'Compound Interest Calculator', route: '/CompoundInterest' },*/
                     ],

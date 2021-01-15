@@ -19,6 +19,7 @@ import AnnuityDueFutureValue from '../views/AnnuityDueFutureValue.vue'
 import AnnuityDuePaymentPV from '../views/AnnuityDuePaymentPV.vue'
 import AnnuityDuePaymentFV from '../views/AnnuityDuePaymentFV.vue'
 import Mortgage from '../views/Mortgage.vue'
+import Installment from '../views/Installment.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -117,6 +118,11 @@ const routes = [
     path: '/Mortgage',
     name: 'Mortgage',
     component: Mortgage
+  },
+  {
+    path: '/Installment',
+    name: 'Installment',
+    component: Installment
   }/* ,
   {
     path: '/CompoundInterest',
