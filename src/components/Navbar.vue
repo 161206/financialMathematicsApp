@@ -15,31 +15,20 @@
         </v-toolbar>
         <v-navigation-drawer app mx-auto v-model="drawer" class="indigo darken-4">
            <v-list>
-      <v-list-group
-        v-for="link in links"
-        :key="link.text"
-        v-model="link.active"
-        no-action
-      >
-        <template v-slot:activator>
-          <v-list-item-action>
-            <v-icon class="white--text">{{ link.icon}}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-                <v-list-item-title class="white--text">{{link.text}}</v-list-item-title>
-            </v-list-item-content>
-        </template>
+        <v-list-item
+          v-for="item in links"
+          :key="item.text"
+          router :to="item.route"
+        >
+          <v-list-item-icon>
+            <v-icon class="white--text">{{ item.icon }}</v-icon>
+          </v-list-item-icon>
 
-        <v-list-item v-for="sublink in link.links" :key="sublink.text" router :to="sublink.route">
-            <v-list-item-action>
-                <v-icon class="white--text">{{ sublink.icon}}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-                <v-list-item-title class="white--text">{{sublink.text}}</v-list-item-title>
-            </v-list-item-content>
-                </v-list-item>
-      </v-list-group>
-    </v-list>
+          <v-list-item-content>
+            <v-list-item-title class="white--text">{{ item.text }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
 
         </v-navigation-drawer>
     </nav>
@@ -50,6 +39,16 @@ export default {
         return {
             drawer: false,
             links: [
+                    
+                    { icon: 'dashboard', text: 'Loan Calculator', route: '/LoanCalculator' },
+                    { icon: 'dashboard', text: 'Auto Loan Calculator', route: '/components/AutoLoanCalculator' },
+                    { icon: 'dashboard', text: 'Mortgage', route: '/components/Mortgage' },
+                    { icon: 'dashboard', text: 'Annuty Calculator', route: '/components/AnnuityCalculator' },
+                    { icon: 'dashboard', text: 'Installment', route: '/components/Installment' },
+                    ],
+            /*
+            links: [
+              
               {
                 icon: 'folder',
                 links: [
@@ -66,32 +65,33 @@ export default {
                     { icon: 'dashboard', text: 'Annuity Due Future Value Calculator', route: '/AnnuityDueFutureValue' },
                     { icon: 'dashboard', text: 'Annuity Due Payment Calculator (PV)', route: '/AnnuityDuePaymentPV' },
                     { icon: 'dashboard', text: 'Annuity Due Payment Calculator (FV)', route: '/AnnuityDuePaymentFV' },
-                    /*
-                    { icon: 'dashboard', text: 'Compound Interest Calculator', route: '/CompoundInterest' },*/
+                    
                     ],
                 text: 'Annuity',
               },
               {
                 icon: 'folder',
                 links: [
-                    { icon: 'dashboard', text: 'Compound Interest Calculator', route: '/CompoundInterest' },/*
-                    { icon: 'dashboard', text: 'Compound Interest Calculator', route: '/CompoundInterest' },*/
+                    { icon: 'dashboard', text: 'Compound Interest Calculator', route: '/CompoundInterest' },
                     ],
                 text: 'Compound Interest',
               },
               {
                 icon: 'folder',
                 links: [
-                    { icon: 'dashboard', text: 'Installment Calculator', route: '/Installment' },/*
-                    { icon: 'dashboard', text: 'Compound Interest Calculator', route: '/CompoundInterest' },*/
+                    { icon: 'dashboard', text: 'Installment Calculator', route: '/Installment' },
                     ],
                 text: 'Installment',
               },
               {
                 icon: 'folder',
                 links: [
-                    { icon: 'dashboard', text: 'Mortgage Calculator', route: '/Mortgage' },/*
-                    { icon: 'dashboard', text: 'Compound Interest Calculator', route: '/CompoundInterest' },*/
+                    
+                    { icon: 'dashboard', text: 'Loan Calculator', route: '/LoanCalculator' },
+                    { icon: 'dashboard', text: 'Auto Loan Calculator', route: '/components/AutoLoanCalculator' },
+                    { icon: 'dashboard', text: 'Mortgage', route: '/components/Mortgage' },
+                    { icon: 'dashboard', text: 'Annuty Calculator', route: '/components/AnnuityCalculator' },
+                    { icon: 'dashboard', text: 'Installment', route: '/components/Installment' },
                     ],
                 text: 'Mortgage',
               },
@@ -101,12 +101,11 @@ export default {
                     { icon: 'dashboard', text: 'Loan Payment Calcutator', route: '/LoanPaymentCalcutator' },
                     { icon: 'dashboard', text: 'loan remaining balance calculator', route: '/LoanRemainingBalanceCalculator' },
                     { icon: 'dashboard', text: 'Loan Ballon Balance Calculator', route: '/LoanBallonBalanceCalculator' },
-                    /*
-                    { icon: 'dashboard', text: 'Compound Interest Calculator', route: '/CompoundInterest' },*/
+                    
                     ],
                 text: 'Loan',
               },
-            ],
+            ],*/
                     
         }
     }

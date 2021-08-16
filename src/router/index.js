@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Dashboard from '../views/Dashboard.vue'
 import CompoundInterest from '../views/CompoundInterest.vue'
 import LoanPaymentCalcutator from '../views/LoanPaymentCalcutator.vue'
 import LoanRemainingBalanceCalculator from '../views/LoanRemainingBalanceCalculator.vue'
@@ -19,15 +18,15 @@ import AnnuityDueFutureValue from '../views/AnnuityDueFutureValue.vue'
 import AnnuityDuePaymentPV from '../views/AnnuityDuePaymentPV.vue'
 import AnnuityDuePaymentFV from '../views/AnnuityDuePaymentFV.vue'
 import Mortgage from '../views/Mortgage.vue'
+import Mortgag from '../components/Mortgage.vue'
+import Installmen from '../components/Installment.vue'
 import Installment from '../views/Installment.vue'
+import LoanCalculator from '../components/LoanCalculator.vue'
+import AutoLoanCalculator from '../components/AutoLoanCalculator.vue'
+import AnnuityCalculator from '../components/AnnuityCalculator.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'dashboard',
-    component: Dashboard
-  },
   
   {
     path: '/CompoundInterest',
@@ -123,12 +122,32 @@ const routes = [
     path: '/Installment',
     name: 'Installment',
     component: Installment
-  }/* ,
+  } ,
   {
-    path: '/CompoundInterest',
-    name: 'CompoundInterest',
-    component: CompoundInterest
-  }*/
+    path: '/components/AnnuityCalculator',
+    name: 'AnnuityCalculator',
+    component: AnnuityCalculator
+  },
+  {
+    path: '/LoanCalculator',
+    name: 'LoanCalculator',
+    component: LoanCalculator
+  },
+  {
+    path: '/components/AutoLoanCalculator',
+    name: 'AutoLoanCalculator',
+    component: AutoLoanCalculator
+  },
+  {
+    path: '/components/Mortgage',
+    name: 'Mortgag',
+    component: Mortgag
+  },
+  {
+    path: '/components/Installment',
+    name: 'Installment',
+    component: Installmen
+  }
 ]
 
 const router = new VueRouter({

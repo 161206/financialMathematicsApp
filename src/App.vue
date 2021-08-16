@@ -25,9 +25,12 @@ data () {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #DD2C00;
-  background-color: maroon;
+  background-color: white;
   font-size: 13pt;
 }
 input{ text-align: center; color: #1A237E;}
-
+.prefix, .sufix,.text-field, input {
+    font-size: 1.2em;
+    font-weight: bold;
+}
 </style>

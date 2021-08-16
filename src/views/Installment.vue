@@ -67,7 +67,7 @@ export default {
    },
   computed:{
         Payment: function () {
-          const Payment = this.sharedState.principal *(this.sharedState.rate/100)* Math.pow(1 + (this.sharedState.rate / 100), this.sharedState.compoundFrequency)/Math.pow(1 + this.sharedState.rate, this.sharedState.compoundFrequency - 1);
+          const Payment = this.sharedState.principal *((this.sharedState.rate/100)* Math.pow(1 + (this.sharedState.rate / 100), this.sharedState.compoundFrequency))/Math.pow(1 + this.sharedState.rate, this.sharedState.compoundFrequency - 1);
           return Math.round(Payment * 100) / 100;
         }
       }
