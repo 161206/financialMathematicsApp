@@ -129,7 +129,7 @@ const routes = [
     component: AnnuityCalculator
   },
   {
-    path: '/LoanCalculator',
+    path: '/components/LoanCalculator',
     name: 'LoanCalculator',
     component: LoanCalculator
   },

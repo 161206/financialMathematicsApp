@@ -40,8 +40,8 @@ export default {
             drawer: false,
             links: [
                     
-                    { icon: 'dashboard', text: 'Loan Calculator', route: '/LoanCalculator' },
-                    { icon: 'dashboard', text: 'Auto Loan Calculator', route: '/components/AutoLoanCalculator' },
+                    { icon: 'dashboard', text: 'Loan Calculator', route: '/components/LoanCalculator' },
+                    { icon: 'dashboard', text: 'Auto Loan Calculator', route: '/' },
                     { icon: 'dashboard', text: 'Mortgage', route: '/components/Mortgage' },
                     { icon: 'dashboard', text: 'Annuty Calculator', route: '/components/AnnuityCalculator' },
                     { icon: 'dashboard', text: 'Installment', route: '/components/Installment' },
