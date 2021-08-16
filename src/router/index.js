@@ -134,7 +134,7 @@ const routes = [
     component: LoanCalculator
   },
   {
-    path: '/components/AutoLoanCalculator',
+    path: '/',
     name: 'AutoLoanCalculator',
     component: AutoLoanCalculator
   },
