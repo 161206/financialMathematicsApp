@@ -5,7 +5,7 @@
                 <v-col cols="6">
                     <v-card  class="ma-3" color="blue-grey lighten-5">
                         <v-layout row justify-center class="mx-3">
-                            <h2>Auto Loan Calculate</h2>
+                            <h2>Auto Loan Calculator</h2>
                         </v-layout>
                         <v-layout row class="mx-3">
                             <v-col cols="7">
@@ -73,12 +73,12 @@
                         <!-- buttons -->
                         <v-layout row class="mx-3">
                             <v-col cols="6">
-                                <v-btn rounded color="indigo" dark >
+                                <v-btn rounded color="indigo" dark @click="calculate">
                                     <h3>Calculate</h3>
                                 </v-btn>
                             </v-col>
                             <v-col cols="6">
-                                <v-btn rounded color="indigo" dark >
+                                <v-btn rounded color="indigo" dark @click="reset">
                                     <h3>Reset</h3>
                                 </v-btn>
                              </v-col>
@@ -179,6 +179,13 @@ export default {
             if(invalid || date.getFullYear().toString().length != 4) return "Invalid date"
             this.startDate = this.dateFormat(date);
             return false;
+        },
+        reset() {
+            this.carPrice = null;
+            this.downPayment = null;
+            this.interestRate = null;
+            this.duration = null;
+            this.startDate = new Date();
         },
         calculate() {
             //don't process if has error input

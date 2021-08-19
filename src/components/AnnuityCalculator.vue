@@ -5,7 +5,7 @@
                 <v-col cols="6">
                     <v-card  class="ma-3" color="blue-grey lighten-5">
                         <v-layout row justify-center class="mx-3">
-                            <h2>Annuity Calculater</h2>
+                            <h2>Annuity Calculator</h2>
                         </v-layout>
                         <v-layout row class="mx-3">
                             <v-col cols="7">
@@ -163,7 +163,7 @@ export default {
             this.sharedState.principal = null;
             this.sharedState.rate = null;
             this.sharedState.compoundFrequency = null;
-            this.startDate = null;
+            this.startDate = new Date();
         },
         calculate() {
             //don't process if has error input

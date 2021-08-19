@@ -163,8 +163,9 @@ export default {
             this.sharedState.principal = null;
             this.sharedState.rate = null;
             this.sharedState.compoundFrequency = null;
-            this.startDate = null;
+            this.startDate = new Date();
         },
+        
         calculate() {
             //don't process if has error input
             if(this.$el.querySelector('.custom-input--error')) return;

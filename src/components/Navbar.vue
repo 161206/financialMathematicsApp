@@ -3,7 +3,7 @@
         <v-toolbar flat app>
             <v-icon class="grey--text" @click="drawer = !drawer">menu</v-icon>
             <v-toolbar-title>
-                <span>Financial Mathematics</span>
+                <span>Financial Mathematics App</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn flat color="grey">
@@ -42,9 +42,9 @@ export default {
                     
                     { icon: 'dashboard', text: 'Loan Calculator', route: '/components/LoanCalculator' },
                     { icon: 'dashboard', text: 'Auto Loan Calculator', route: '/' },
-                    { icon: 'dashboard', text: 'Mortgage', route: '/components/Mortgage' },
-                    { icon: 'dashboard', text: 'Annuty Calculator', route: '/components/AnnuityCalculator' },
-                    { icon: 'dashboard', text: 'Installment', route: '/components/Installment' },
+                    { icon: 'dashboard', text: 'Mortgage Calculator', route: '/components/Mortgage' },
+                    { icon: 'dashboard', text: 'Annuity Calculator', route: '/components/AnnuityCalculator' },
+                    { icon: 'dashboard', text: 'Installment Calculator', route: '/components/Installment' },
                     ],
             /*
             links: [
