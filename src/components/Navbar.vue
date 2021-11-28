@@ -5,13 +5,13 @@
             <v-toolbar-title>
                 <span>Financial Mathematics App</span>
             </v-toolbar-title>
-            <v-spacer></v-spacer>
+            <v-spacer></v-spacer><!--
             <v-btn flat color="grey">
                 <span>Sign Out</span>
                 <v-icon right>exit_to_app</v-icon>
 
             </v-btn>
-
+-->
         </v-toolbar>
         <v-navigation-drawer app mx-auto v-model="drawer" class="indigo darken-4">
            <v-list>
@@ -45,6 +45,7 @@ export default {
                     { icon: 'dashboard', text: 'Mortgage Calculator', route: '/components/Mortgage' },
                     { icon: 'dashboard', text: 'Annuity Calculator', route: '/components/AnnuityCalculator' },
                     { icon: 'dashboard', text: 'Installment Calculator', route: '/components/Installment' },
+                    { icon: 'dashboard', text: 'Compound Interest Calculator', route: '/components/CompoundInterest' },
                     ],
             /*
             links: [

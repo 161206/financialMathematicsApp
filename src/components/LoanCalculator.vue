@@ -5,15 +5,15 @@
                 <v-col cols="6">
                     <v-card  class="ma-3" color="blue-grey lighten-5">
                         <v-layout row justify-center class="mx-3">
-                            <h2>Loan Payment Calcutator</h2>
+                            <h2>Loan Calculator</h2>
                         </v-layout>
                         <v-layout row class="mx-3">
                             <v-col cols="7">
-                                <h3  class="indigo--text ">  Original Principal:</h3>
+                                <h3  class="indigo--text "> Original Principal:</h3>
                             </v-col>
                             <v-col cols="5">
                                 <v-text-field label="Amount" v-model="carPrice"
-                                prefix="E" type="number" min='0'>
+                                prefix="$" type="number" min='0'>
                                 </v-text-field>
                              </v-col>
                         </v-layout>
@@ -96,7 +96,7 @@
             </v-row>
         </v-container>
 
-        
+       
         <p v-show="amortizationList.length > 0" class="table-title font--bold">Amortization Schedule</p>
         <Table v-show="amortizationList.length > 0">
             <template slot="header">
@@ -127,7 +127,7 @@ export default {
             due: null,
             menu: false,
             carPrice: 25000,
-            downPayment: 5000,
+            downPayment: 0,
             monthlyPayment: 0,
             interestRate: 3,
             interestTotal: 0,
@@ -148,39 +148,18 @@ export default {
     },
     computed: {
         principalTotal() {
-            return this.carPrice;
+            return this.carPrice - this.downPayment;
         }
     },
     methods: {
-        invalidCarPrice() {
-            if(Number(this.carPrice) < 100 || Number(this.carPrice) < Number(this.downPayment)) return "Price to low";
-            return false;
-        },
-        invalidDownpayment() {
-            if(Number(this.carPrice) < Number(this.downPayment)) return "Invalid downpayment";
-            return false;
-        },
-        invalidInterestRate() {
-            if(Number(this.interestRate) <= 0 || Number(this.interestRate) > 98) return "Invalid rate";
-            return false;
-        },
-        invalidStartDate() {
-            let date =  new Date(this.startDate)
-            let invalid = date == 'Invalid Date';
-            if(invalid || date.getFullYear().toString().length != 4) return "Invalid date"
-            this.startDate = this.dateFormat(date);
-            return false;
-        },
         reset() {
             this.carPrice = null;
             this.downPayment = null;
-            this.interestRate = null;
             this.duration = null;
+            this.interestRate = null;
             this.startDate = new Date();
         },
         calculate() {
-            //don't process if has error input
-            if(this.$el.querySelector('.custom-input--error')) return;
             
             let count = this.duration * this.sharedState.select.month;
             let i = this.interestRate * 0.01 / 12;
@@ -192,13 +171,22 @@ export default {
             
             let principal, interest, date = new Date(this.startDate),
                 totalInterest = 0, balance = this.principalTotal;
+                this.amortizationList.push({
+                    date: this.dateFormat(date),
+                    monthlyPayment: 0,
+                    principal: this.numFormat(Math.round(0)), 
+                    interest: this.numFormat(Math.round(0)), 
+                    totalInterest: this.numFormat(Math.round(0)), 
+                    balance: this.numFormat(Math.round(balance))
+                })
 
-            while(count >= 0) {
+            while(count >= 1) {
                 //set next month
                 date.setMonth(date.getMonth() + 1);
                 interest = balance * i;
                 totalInterest += interest;
                 principal = result - interest;
+                 balance -= principal;
                 if(interest < 0) interest = 0;
                 if(balance < 0) balance = 0;
                 this.amortizationList.push({
@@ -209,7 +197,7 @@ export default {
                     totalInterest: this.numFormat(Math.round(totalInterest)), 
                     balance: this.numFormat(Math.round(balance))
                 });
-                balance -= principal;
+               
                 count--;
             }
             this.interestTotal = totalInterest;

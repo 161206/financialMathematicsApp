@@ -9,11 +9,11 @@
                         </v-layout>
                         <v-layout row class="mx-3">
                             <v-col cols="7">
-                                <h3  class="indigo--text ">Periodic Cash Flow:</h3>
+                                <h3  class="indigo--text ">Present Value:</h3>
                             </v-col>
                             <v-col cols="5">
                                 <v-text-field label="Amount" v-model="sharedState.principal"
-                                prefix="E" type="number" min='0'>
+                                prefix="$" type="number" min='0'>
                                 </v-text-field>
                              </v-col>
                         </v-layout>
@@ -72,6 +72,8 @@
                 <v-col cols="6" >
                     <v-card flat class="ma-3 text-center ">
                         <div class="calculator-result">
+                            <!-- <h2>Present value:</h2>
+                            <h2>{{monthlyPayment}}</h2>-->
                             <h2>Result:</h2>
                             <p>Estimate monthly payment</p>
                             <p class="label-monthly-payment">{{ monthlyPayment }}</p>
@@ -140,53 +142,46 @@ export default {
     },
     
     methods: {
-        invalidCarPrice() {
-            if(Number(this.carPrice) < 100 || Number(this.carPrice) < Number(this.downPayment)) return "Price to low";
-            return false;
-        },
-        invalidDownpayment() {
-            if(Number(this.carPrice) < Number(this.downPayment)) return "Invalid downpayment";
-            return false;
-        },
-        invalidInterestRate() {
-            if(Number(this.interestRate) <= 0 || Number(this.interestRate) > 98) return "Invalid rate";
-            return false;
-        },
-        invalidStartDate() {
-            let date =  new Date(this.startDate)
-            let invalid = date == 'Invalid Date';
-            if(invalid || date.getFullYear().toString().length != 4) return "Invalid date"
-            this.startDate = this.dateFormat(date);
-            return false;
-        },
+        
         reset() {
             this.sharedState.principal = null;
             this.sharedState.rate = null;
+            this.sharedState.time = null;
             this.sharedState.compoundFrequency = null;
             this.startDate = new Date();
+            
         },
         calculate() {
-            //don't process if has error input
-            if(this.$el.querySelector('.custom-input--error')) return;
             
-            let count = this.sharedState.compoundFrequency * this.sharedState.select.month;
+            
+            let count = this.sharedState.time * this.sharedState.select.month;
             let i =(this.sharedState.rate/100)/12;
-            let result = this.sharedState.principal*((1-Math.pow(1+(this.sharedState.rate/100),-this.sharedState.time))/(this.sharedState.rate/100));
-
+            let result = (i*this.sharedState.principal)/(1-Math.pow(1+i,-count));
+            
             this.monthlyPayment = this.numFormat(Math.round(result)); 
             this.amortizationList = [];
             
             let principal, interest, date = new Date(this.startDate),
                 totalInterest = 0, balance = this.sharedState.principal;
+                this.amortizationList.push({
+                    date: this.dateFormat(date),
+                    monthlyPayment: 0,
+                    principal: this.numFormat(Math.round(0)), 
+                    interest: this.numFormat(Math.round(0)), 
+                    totalInterest: this.numFormat(Math.round(0)), 
+                    balance: this.numFormat(Math.round(balance))
+                })
+                
 
-            while(count >= 0) {
+            while(count >= 1) {
                 //set next month
                 date.setMonth(date.getMonth() + 1);
                 interest = balance * i;
                 totalInterest += interest;
                 principal = result - interest;
+                balance -= principal;
                 if(interest < 0) interest = 0; 
-                if(balance < 0){ balance = 0; break;}
+                if(balance < 0) balance = 0; 
                 this.amortizationList.push({
                     date: this.dateFormat(date),
                     monthlyPayment: this.monthlyPayment,
@@ -195,7 +190,7 @@ export default {
                     totalInterest: this.numFormat(Math.round(totalInterest)), 
                     balance: this.numFormat(Math.round(balance))
                 });
-                balance -= principal;
+                
                 count--;
             }
             this.interestTotal = totalInterest;

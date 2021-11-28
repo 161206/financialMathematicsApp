@@ -24,6 +24,7 @@ import Installment from '../views/Installment.vue'
 import LoanCalculator from '../components/LoanCalculator.vue'
 import AutoLoanCalculator from '../components/AutoLoanCalculator.vue'
 import AnnuityCalculator from '../components/AnnuityCalculator.vue'
+import CompoundInterestCalculator from '../components/CompoundInterest.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -147,6 +148,11 @@ const routes = [
     path: '/components/Installment',
     name: 'Installment',
     component: Installmen
+  },
+  {
+    path: '/components/CompoundInterest',
+    name: 'CompoundInterestCalculator',
+    component: CompoundInterestCalculator
   }
 ]
 
